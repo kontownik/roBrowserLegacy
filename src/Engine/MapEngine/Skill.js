@@ -139,6 +139,7 @@ define(function( require )
 		var error = 0;
 		var entity = Session.Entity;
 		var srcEntity = EntityManager.get(entity.GID);
+		var action = SkillActionTable['DEFAULT']( srcEntity, Renderer.tick )
 		if (pkt.NUM) {
 			switch (pkt.SKID) {
 
@@ -148,6 +149,7 @@ define(function( require )
 
 				case SkillId.NV_BASIC:
 					error = pkt.NUM < 7 ? 159 + pkt.NUM : pkt.NUM == 7 ? 383 : 0;
+					action = SkillActionTable[SkillId.NV_BASIC]
 					break;
 
 				case SkillId.AL_WARP:
@@ -188,7 +190,7 @@ define(function( require )
 
 		if (error) {
 			ChatBox.addText( DB.getMessage(error), ChatBox.TYPE.ERROR, ChatBox.FILTER.SKILL_FAIL );
-			srcEntity.setAction(SkillActionTable['DEFAULT']( srcEntity, Renderer.tick ));
+			srcEntity.setAction(action);
 		}
 	}
 

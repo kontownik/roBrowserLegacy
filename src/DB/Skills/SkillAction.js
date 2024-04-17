@@ -603,6 +603,7 @@ define(['./SkillConst'], function(SK) {
 	
 		
 	//Prevent default skill action
+	SkillAction[SK.NV_BASIC] =
 	SkillAction[SK.TF_BACKSLIDING] =
 	SkillAction[SK.NV_TRICKDEAD] =
 	SkillAction[SK.TK_HIGHJUMP] =
